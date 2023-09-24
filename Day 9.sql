@@ -4,6 +4,19 @@
 -- 3. Jab Yoan Efendi
 -- 4. Zikri Muhammad Madani
 
+-- CASE 3
+CREATE TABLE students 
+( 
+       id serial PRIMARY KEY, 
+       first_name varchar NOT NULL, 
+       last_name varchar DEFAULT NULL, 
+       email varchar UNIQUE NOT NULL, 
+       age integer DEFAULT 18, 
+       gender varchar CHECK (gender IN ('male','female')),
+       date_of_birth daTe NOT NULL,
+       created_at timestamptz DEFAULT NOW());
+)
+
 -- CASE 5
 SELECT r.rev_stars AS rating, 
        m.mov_title AS judul_film, 
