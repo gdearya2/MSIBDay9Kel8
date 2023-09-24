@@ -52,6 +52,12 @@ WHERE rev_stars BETWEEN 8.30 AND 10.00
 ORDER BY rev_stars DESC
 LIMIT 5;
 
+-- CASE 6
+CREATE INDEX index_ninja ON ninja (email);
+EXPLAIN ANALYZE SELECT nama,desa FROM ninja WHERE email = 'naruto@mail.com';
+set enable_seqscan = off;
+EXPLAIN ANALYZE SELECT nama,desa FROM ninja WHERE email = 'naruto@mail.com';
+
 -- CASE 7
 SELECT * 
 FROM ( 
