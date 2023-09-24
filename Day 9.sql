@@ -17,6 +17,25 @@ CREATE TABLE students
        created_at timestamptz DEFAULT NOW());
 )
 
+-- CASE 4
+CREATE OR REPLACE FUNCTION CountMoviesByGenre(genreTitle VARCHAR)
+RETURNS INT AS $$
+DECLARE
+    movieCount INT;
+BEGIN
+    SELECT COUNT(*) INTO movieCount
+    FROM movie
+    JOIN movie_genres ON movie.mov_id = movie_genres.mov_id
+    JOIN genres ON movie_genres.gen_id = genres.gen_id
+    WHERE genres.gen_title = genreTitle;
+    
+    RETURN movieCount;
+END;
+$$ LANGUAGE plpgsql;
+
+contoh: 
+       SELECT CountMoviesByGenre('Drama');
+
 -- CASE 5
 SELECT r.rev_stars AS rating, 
        m.mov_title AS judul_film, 
