@@ -4,6 +4,22 @@
 -- 3. Jab Yoan Efendi
 -- 4. Zikri Muhammad Madani
 
+-- CASE 5
+SELECT r.rev_stars AS rating, 
+       m.mov_title AS judul_film, 
+       concat(a.act_fname,' ', a.act_lname) AS nama_pemain, 
+       mc.role
+FROM rating r
+INNER JOIN movie m 
+  ON m.mov_id = r.mov_id
+INNER JOIN movie_cast mc 
+  ON mc.mov_id = m.mov_id
+INNER JOIN actor a 
+  ON a.act_id = mc.act_id
+WHERE rev_stars BETWEEN 8.30 AND 10.00
+ORDER BY rev_stars DESC
+LIMIT 5;
+
 -- CASE 7
 SELECT * 
 FROM ( 
